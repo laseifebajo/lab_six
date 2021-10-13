@@ -8,12 +8,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import Read from './components/read';
+import Create from './components/create';
+
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+
 
 //navigating to different tabs
 class App extends Component {
@@ -28,16 +32,16 @@ class App extends Component {
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/footer">Footer</Nav.Link>
-              <Nav.Link href="/header">Header</Nav.Link>
+              <Nav.Link href="/read">Read</Nav.Link>
+              <Nav.Link href="/create">Create</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
         <Switch>
           {/* This is where the different paths to the js files are done */}
           <Route path="/"exact><Content/></Route>
-          <Route path="/header"exact><Header></Header></Route>
-          <Route path="/footer"exact><Footer></Footer></Route>
+          <Route path="/create"><Create></Create></Route>
+          <Route path="/read"><Read></Read></Route>
         </Switch>
         
       </div>
