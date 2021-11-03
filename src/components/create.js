@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 // this is a new component called create 
 class Create extends Component {
@@ -20,17 +21,34 @@ class Create extends Component {
 
     //in this section this is where you can add in the year, title and different posters and also add alert that shows the users their updated details
     handleSubmit(event) {
-        alert('Movie Name: ' + this.state.Title + " " +
+        console.log('Movie Name: ' + this.state.Title + " " +
             'Movie Year: ' + this.state.Year + " " +
             'Movie Poster: ' + this.state.Poster);
-        event.preventDefault();
+        
+        //data is being held here
+        const NewMovie = {
+            Title:this.state.Title,
+            Year:this.state.Year,
+            Poster:this.state.Poster
+        }
 
-        this.setState({
-            Title:'',
-            Year:'',
-            Poster:''
+        //calling http methods
+        //(catch) logs any error to the console
+        axios.post('http://localhost:4000/api/movies',NewMovie)
+        .then((response)=>{
+            console.log(response);
         })
-           
+        .catch((err)=>{
+            console.log(err);
+        })
+
+        event.preventDefault();
+        this.setState({
+            Title: '',
+            Year: '',
+            Poster: ''
+        })
+
     }
     onChangeMovieName(event) {
         this.setState({
